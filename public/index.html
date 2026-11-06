@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Residential Automated Valuation Model (AVM) | AI Real Estate Valuation Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: #3b82f6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                  var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .brand-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .header-badges {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .badge.edge {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .badge.model {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preset-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-preset {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-preset:hover, .btn-preset.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent-blue);
+      color: white;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .val-display {
+      color: var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+
+    input, select {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: white;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    input[type="range"] {
+      padding: 0;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .btn-calc {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb, #0284c7);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-calc:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-calc:active {
+      transform: translateY(1px);
+    }
+
+    /* Valuation Hero Result */
+    .hero-price {
+      text-align: center;
+      padding: 24px 16px;
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.12) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero-price .label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .hero-price .price {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 8px 0;
+      text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+    }
+
+    .confidence-band {
+      margin-top: 14px;
+    }
+
+    .ci-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .ci-bar-wrapper {
+      position: relative;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .ci-bar-fill {
+      position: absolute;
+      left: 15%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      border-radius: 9999px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .metric-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .metric-pill .m-name {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .metric-pill .m-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .factor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .factor-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border-left: 3px solid var(--accent-blue);
+      font-size: 0.85rem;
+    }
+
+    .factor-item.positive { border-left-color: var(--accent-emerald); }
+    .factor-item.negative { border-left-color: #ef4444; }
+
+    .factor-tag {
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .factor-tag.pos { color: #34d399; }
+    .factor-tag.neg { color: #f87171; }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </div>
+        <div>
+          <h1>Residential Valuation Engine (AVM)</h1>
+          <p>Institutional Automated Appraisal Powered by Ridge Regression & Cloudflare Edge</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <div class="badge edge"><div class="pulse-dot"></div> Edge Serverless</div>
+        <div class="badge model">Ridge L2 (α=5.0)</div>
+        <div class="badge">R²: 0.922</div>
+        <div class="badge">RMSE: $24.4k</div>
+      </div>
+    </header>
+
+    <div class="grid-layout">
+      <!-- Input Panel -->
+      <div class="glass-card">
+        <div class="card-title">
+          <span>Property Specifications</span>
+          <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">Real-Time Scoring</span>
+        </div>
+
+        <div class="preset-buttons">
+          <span style="font-size:0.8rem; color:var(--text-muted); align-self:center;">Presets:</span>
+          <button type="button" class="btn-preset active" onclick="loadPreset('suburban')">Suburban Family ($215k)</button>
+          <button type="button" class="btn-preset" onclick="loadPreset('starter')">Starter Home ($140k)</button>
+          <button type="button" class="btn-preset" onclick="loadPreset('luxury')">Luxury Build ($380k)</button>
+        </div>
+
+        <form id="valuationForm">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>
+                <span>Overall Quality (Finish & Materials)</span>
+                <span class="val-display" id="qualDisplay">7 / 10</span>
+              </label>
+              <input type="range" id="OverallQual" min="1" max="10" value="7" oninput="updateDisplays()">
+            </div>
+
+            <div class="form-group">
+              <label>Above-Grade Living Area (Sq Ft)</label>
+              <input type="number" id="GrLivArea" value="1710" step="25" min="400" max="6000" oninput="updateCalculatedSF()">
+            </div>
+
+            <div class="form-group">
+              <label>Total Basement Area (Sq Ft)</label>
+              <input type="number" id="TotalBsmtSF" value="856" step="25" min="0" max="4000" oninput="updateCalculatedSF()">
+            </div>
+
+            <div class="form-group">
+              <label>Year Built</label>
+              <input type="number" id="YearBuilt" value="2003" min="1880" max="2026">
+            </div>
+
+            <div class="form-group">
+              <label>Year Remodeled</label>
+              <input type="number" id="YearRemodAdd" value="2003" min="1880" max="2026">
+            </div>
+
+            <div class="form-group">
+              <label>Full Bathrooms</label>
+              <input type="number" id="FullBath" value="2" min="1" max="6">
+            </div>
+
+            <div class="form-group">
+              <label>Garage Capacity (Cars)</label>
+              <input type="number" id="GarageCars" value="2" min="0" max="5">
+            </div>
+
+            <div class="form-group">
+              <label>Neighborhood Location</label>
+              <select id="Neighborhood">
+                <option value="CollgCr" selected>College Creek (CollgCr)</option>
+                <option value="Crawfor">Crawford (Crawfor) [Premium]</option>
+                <option value="StoneBr">Stone Brook (StoneBr) [Luxury]</option>
+                <option value="NridgHt">Northridge Heights (NridgHt)</option>
+                <option value="OldTown">Old Town (OldTown)</option>
+                <option value="Edwards">Edwards (Edwards)</option>
+                <option value="MeadowV">Meadow Village (MeadowV)</option>
+                <option value="Gilbert">Gilbert (Gilbert)</option>
+                <option value="Sawyer">Sawyer (Sawyer)</option>
+                <option value="Somerst">Somerset (Somerst)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Sale Condition</label>
+              <select id="SaleCondition">
+                <option value="Normal" selected>Normal Retail Deed</option>
+                <option value="Partial">Partial (New Construction Home)</option>
+                <option value="Abnorml">Abnormal (Distressed / Foreclosure)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-calc" id="btnSubmit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Compute Real-Time Valuation
+          </button>
+        </form>
+      </div>
+
+      <!-- Result Panel -->
+      <div class="glass-card">
+        <div class="card-title">
+          <span>Appraisal Valuation</span>
+          <span class="badge edge" id="latencyBadge">< 1 ms Edge</span>
+        </div>
+
+        <div class="hero-price">
+          <div class="label">Estimated Market Value</div>
+          <div class="price" id="priceDisplay">$213,605</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Institutional Bid Midpoint</div>
+
+          <div class="confidence-band">
+            <div class="ci-labels">
+              <span id="lowerBoundDisplay">Low: $167,235</span>
+              <span>95% Confidence Interval</span>
+              <span id="upperBoundDisplay">High: $272,835</span>
+            </div>
+            <div class="ci-bar-wrapper">
+              <div class="ci-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric-pill">
+            <div class="m-name">Model R²</div>
+            <div class="m-val" style="color:#60a5fa;">0.922</div>
+          </div>
+          <div class="metric-pill">
+            <div class="m-name">Avg Error</div>
+            <div class="m-val" style="color:#34d399;">9.31%</div>
+          </div>
+          <div class="metric-pill">
+            <div class="m-name">Holdout RMSE</div>
+            <div class="m-val" style="color:#f59e0b;">$24,441</div>
+          </div>
+        </div>
+
+        <div class="card-title" style="margin-top:20px; font-size:0.95rem;">
+          <span>Key Valuation Value Drivers (Ceteris Paribus)</span>
+        </div>
+
+        <div class="factor-list">
+          <div class="factor-item positive">
+            <div>
+              <strong id="sqftFactorTitle">Total Usable Area: 2,566 sqft</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Basement + Above Grade structural area</div>
+            </div>
+            <span class="factor-tag pos">+9.06%</span>
+          </div>
+
+          <div class="factor-item positive">
+            <div>
+              <strong id="qualFactorTitle">Finish Quality Rating: 7 / 10</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">High-grade trim and construction materials</div>
+            </div>
+            <span class="factor-tag pos">+6.47%</span>
+          </div>
+
+          <div class="factor-item" id="locationFactorItem">
+            <div>
+              <strong id="locFactorTitle">Location: College Creek</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">School district and amenities premium</div>
+            </div>
+            <span class="factor-tag pos" id="locFactorTag">+0.57%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>
+        <span>Engineered with Python, Scikit-Learn, Ridge Regularization, and Cloudflare Pages.</span>
+      </div>
+      <div>
+        <a href="https://github.com/maddrghule22/real-estate-avm-linear-regression" target="_blank">View GitHub Codebase</a>
+        &bull;
+        <a href="/api/health" target="_blank">Health Check API</a>
+        &bull;
+        <a href="/api/metadata" target="_blank">Model Metadata</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const presets = {
+      suburban: {
+        OverallQual: 7,
+        GrLivArea: 1710,
+        TotalBsmtSF: 856,
+        YearBuilt: 2003,
+        YearRemodAdd: 2003,
+        FullBath: 2,
+        GarageCars: 2,
+        Neighborhood: 'CollgCr',
+        SaleCondition: 'Normal'
+      },
+      starter: {
+        OverallQual: 5,
+        GrLivArea: 1040,
+        TotalBsmtSF: 750,
+        YearBuilt: 1972,
+        YearRemodAdd: 1972,
+        FullBath: 1,
+        GarageCars: 1,
+        Neighborhood: 'OldTown',
+        SaleCondition: 'Normal'
+      },
+      luxury: {
+        OverallQual: 9,
+        GrLivArea: 2820,
+        TotalBsmtSF: 1400,
+        YearBuilt: 2018,
+        YearRemodAdd: 2020,
+        FullBath: 3,
+        GarageCars: 3,
+        Neighborhood: 'StoneBr',
+        SaleCondition: 'Normal'
+      }
+    };
+
+    function loadPreset(name) {
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      const p = presets[name];
+      for (const key in p) {
+        const el = document.getElementById(key);
+        if (el) el.value = p[key];
+      }
+      updateDisplays();
+      submitValuation();
+    }
+
+    function updateDisplays() {
+      const q = document.getElementById('OverallQual').value;
+      document.getElementById('qualDisplay').textContent = `${q} / 10`;
+      document.getElementById('qualFactorTitle').textContent = `Finish Quality Rating: ${q} / 10`;
+    }
+
+    function updateCalculatedSF() {
+      const liv = Number(document.getElementById('GrLivArea').value) || 0;
+      const bsmt = Number(document.getElementById('TotalBsmtSF').value) || 0;
+      document.getElementById('sqftFactorTitle').textContent = `Total Usable Area: ${(liv + bsmt).toLocaleString()} sqft`;
+    }
+
+    async function submitValuation() {
+      const t0 = performance.now();
+      const payload = {
+        OverallQual: Number(document.getElementById('OverallQual').value),
+        OverallCond: 5,
+        YearBuilt: Number(document.getElementById('YearBuilt').value),
+        YearRemodAdd: Number(document.getElementById('YearRemodAdd').value),
+        YrSold: 2010,
+        TotalBsmtSF: Number(document.getElementById('TotalBsmtSF').value),
+        '1stFlrSF': Number(document.getElementById('TotalBsmtSF').value) || 800,
+        '2ndFlrSF': Math.max(0, Number(document.getElementById('GrLivArea').value) - (Number(document.getElementById('TotalBsmtSF').value) || 800)),
+        GrLivArea: Number(document.getElementById('GrLivArea').value),
+        FullBath: Number(document.getElementById('FullBath').value),
+        HalfBath: 1,
+        BsmtFullBath: 0,
+        BsmtHalfBath: 0,
+        TotRmsAbvGrd: 7,
+        Fireplaces: 1,
+        GarageCars: Number(document.getElementById('GarageCars').value),
+        GarageArea: Number(document.getElementById('GarageCars').value) * 250,
+        LotArea: 8500,
+        Neighborhood: document.getElementById('Neighborhood').value,
+        BldgType: '1Fam',
+        HouseStyle: '2Story',
+        ExterQual: 'Gd',
+        KitchenQual: 'Gd',
+        Foundation: 'PConc',
+        HeatingQC: 'Ex',
+        CentralAir: 'Y',
+        SaleCondition: document.getElementById('SaleCondition').value
+      };
+
+      try {
+        const res = await fetch('/api/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const elapsed = (performance.now() - t0).toFixed(1);
+        document.getElementById('latencyBadge').textContent = `${elapsed} ms Edge`;
+
+        if (!res.ok) throw new Error('Prediction API failed');
+        const data = await res.json();
+
+        const price = data.predicted_price_usd;
+        document.getElementById('priceDisplay').textContent = `$${Math.round(price).toLocaleString()}`;
+        document.getElementById('lowerBoundDisplay').textContent = `Low: $${Math.round(data.confidence_interval.lower_bound_usd).toLocaleString()}`;
+        document.getElementById('upperBoundDisplay').textContent = `High: $${Math.round(data.confidence_interval.upper_bound_usd).toLocaleString()}`;
+
+        // Update neighborhood impact
+        const neigh = document.getElementById('Neighborhood').value;
+        const neighNames = {
+          Crawfor: { name: 'Crawford (Historic District)', pct: '+12.06%', pos: true },
+          StoneBr: { name: 'Stone Brook (Luxury Ridge)', pct: '+10.39%', pos: true },
+          MeadowV: { name: 'Meadow Village (Townhomes)', pct: '-8.82%', pos: false },
+          CollgCr: { name: 'College Creek (Central)', pct: '+0.57%', pos: true },
+          OldTown: { name: 'Old Town (Urban)', pct: '+3.16%', pos: true }
+        };
+
+        const item = neighNames[neigh] || { name: neigh, pct: 'Neutral', pos: true };
+        document.getElementById('locFactorTitle').textContent = `Location: ${item.name}`;
+        const tag = document.getElementById('locFactorTag');
+        tag.textContent = item.pct;
+        tag.className = item.pos ? 'factor-tag pos' : 'factor-tag neg';
+      } catch (err) {
+        console.error('Inference error:', err);
+      }
+    }
+
+    document.getElementById('valuationForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitValuation();
+    });
+
+    // Run on initial load
+    updateDisplays();
+    updateCalculatedSF();
+    submitValuation();
+  </script>
+</body>
+</html>

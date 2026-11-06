@@ -1,12 +1,17 @@
 # Residential Automated Valuation Model (AVM) — End-to-End Linear Regression Engine
 
-[![CI / Model & API Verification](https://github.com/maddrghule22/real-estate-avm-linear-regression/actions/workflows/ci.yml/badge.svg)](https://github.com/maddrghule22/real-estate-avm-linear-regression/actions)
+[![Live Web Application](https://img.shields.io/badge/Live%20Demo-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare)](https://real-estate-avm.pages.dev/)
+[![CI / Model & API Verification](https://img.shields.io/badge/Pytest-16%20Passed-green.svg)](https://github.com/maddrghule22/real-estate-avm-linear-regression)
 ![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-orange.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)
+![Edge Functions](https://img.shields.io/badge/Cloudflare-Edge%20Serverless-F38020.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)
-![Pytest](https://img.shields.io/badge/Pytest-16%20Passed-green.svg)
-![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
+
+🌐 **Live Production Deployment**: [**https://real-estate-avm.pages.dev/**](https://real-estate-avm.pages.dev/)  
+⚡ **Edge API Health Check**: [**https://real-estate-avm.pages.dev/api/health**](https://real-estate-avm.pages.dev/api/health)  
+📊 **Model Metadata**: [**https://real-estate-avm.pages.dev/api/metadata**](https://real-estate-avm.pages.dev/api/metadata)  
+💻 **GitHub Repository**: [**https://github.com/maddrghule22/real-estate-avm-linear-regression**](https://github.com/maddrghule22/real-estate-avm-linear-regression)
 
 ---
 
