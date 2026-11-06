@@ -1,0 +1,62 @@
+[
+  {
+    "feature": "cat__Neighborhood_Crawfor",
+    "standardized_coefficient": 0.1139,
+    "approx_price_impact_pct": 12.06,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__Neighborhood_Crawfor' increases expected home market valuation by approximately 12.06% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__Neighborhood_StoneBr",
+    "standardized_coefficient": 0.0989,
+    "approx_price_impact_pct": 10.39,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__Neighborhood_StoneBr' increases expected home market valuation by approximately 10.39% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__Neighborhood_MeadowV",
+    "standardized_coefficient": -0.0923,
+    "approx_price_impact_pct": -8.82,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__Neighborhood_MeadowV' decreases expected home market valuation by approximately 8.82% (ceteris paribus)."
+  },
+  {
+    "feature": "num__TotalSF",
+    "standardized_coefficient": 0.0867,
+    "approx_price_impact_pct": 9.06,
+    "business_takeaway": "A 1-standard-deviation increase in 'num__TotalSF' increases expected home market valuation by approximately 9.06% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__SaleCondition_Abnorml",
+    "standardized_coefficient": -0.0733,
+    "approx_price_impact_pct": -7.07,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__SaleCondition_Abnorml' decreases expected home market valuation by approximately 7.07% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__Neighborhood_Veenker",
+    "standardized_coefficient": 0.0707,
+    "approx_price_impact_pct": 7.33,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__Neighborhood_Veenker' increases expected home market valuation by approximately 7.33% (ceteris paribus)."
+  },
+  {
+    "feature": "num__HouseAge",
+    "standardized_coefficient": -0.0705,
+    "approx_price_impact_pct": -6.81,
+    "business_takeaway": "A 1-standard-deviation increase in 'num__HouseAge' decreases expected home market valuation by approximately 6.81% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__SaleCondition_Alloca",
+    "standardized_coefficient": 0.0669,
+    "approx_price_impact_pct": 6.91,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__SaleCondition_Alloca' increases expected home market valuation by approximately 6.91% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__Neighborhood_ClearCr",
+    "standardized_coefficient": 0.0659,
+    "approx_price_impact_pct": 6.81,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__Neighborhood_ClearCr' increases expected home market valuation by approximately 6.81% (ceteris paribus)."
+  },
+  {
+    "feature": "cat__BldgType_Twnhs",
+    "standardized_coefficient": -0.0626,
+    "approx_price_impact_pct": -6.06,
+    "business_takeaway": "A 1-standard-deviation increase in 'cat__BldgType_Twnhs' decreases expected home market valuation by approximately 6.06% (ceteris paribus)."
+  }
+]

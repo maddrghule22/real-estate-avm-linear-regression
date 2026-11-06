@@ -1,0 +1,16 @@
+services:
+  avm-valuation-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: residential-avm-api
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=models/best_linear_pipeline.joblib
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped

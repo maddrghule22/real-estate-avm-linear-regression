@@ -1,0 +1,16 @@
+Feature,VIF,SevereCollinear
+num__Quality_x_TotalSF,43.94,True
+num__TotalSF,26.73,True
+num__OverallQual,12.24,True
+num__GrLivArea,8.5,False
+num__GarageCars,6.07,False
+num__GarageArea,5.1,False
+num__TotRmsAbvGrd,3.36,False
+num__HouseAge,3.18,False
+num__TotalBaths,2.08,False
+num__RemodAge,2.08,False
+num__HasGarage,1.79,False
+num__HasBasement,1.47,False
+num__OverallCond,1.47,False
+num__HasFireplace,1.4,False
+num__LotArea,1.13,False

@@ -1,0 +1,41 @@
+{
+  "total_rows": 1460,
+  "total_columns": 81,
+  "target_stats": {
+    "raw_skewness": 1.883,
+    "raw_kurtosis": 6.536,
+    "log_skewness": 0.121,
+    "log_kurtosis": 0.81
+  },
+  "missing_features_count": 19,
+  "top_missing_features": {
+    "PoolQC": 99.52054794520548,
+    "MiscFeature": 96.30136986301369,
+    "Alley": 93.76712328767123,
+    "Fence": 80.75342465753424,
+    "MasVnrType": 59.726027397260275,
+    "FireplaceQu": 47.26027397260274,
+    "LotFrontage": 17.73972602739726,
+    "GarageType": 5.5479452054794525,
+    "GarageYrBlt": 5.5479452054794525,
+    "GarageFinish": 5.5479452054794525
+  },
+  "top_correlations": {
+    "SalePrice": 1.0,
+    "OverallQual": 0.791,
+    "GrLivArea": 0.709,
+    "GarageCars": 0.64,
+    "GarageArea": 0.623,
+    "TotalBsmtSF": 0.614,
+    "1stFlrSF": 0.606,
+    "FullBath": 0.561,
+    "TotRmsAbvGrd": 0.534,
+    "YearBuilt": 0.523,
+    "YearRemodAdd": 0.507,
+    "GarageYrBlt": 0.486
+  },
+  "identified_outlier_indices": [
+    523,
+    1298
+  ]
+}

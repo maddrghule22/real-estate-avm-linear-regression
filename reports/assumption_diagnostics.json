@@ -1,0 +1,16 @@
+{
+  "durbin_watson": {
+    "statistic": 2.103,
+    "status": "PASS (residuals independent)"
+  },
+  "breusch_pagan_homoscedasticity": {
+    "lm_stat": 2.102,
+    "p_value": 0.55141,
+    "status": "PASS (homoscedastic)"
+  },
+  "jarque_bera_normality": {
+    "jb_stat": 0.272,
+    "p_value": 0.87277,
+    "status": "PASS (residuals normally distributed)"
+  }
+}

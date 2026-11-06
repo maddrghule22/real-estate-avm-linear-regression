@@ -1,0 +1,6 @@
+Model,rmse,mae,mape_pct,r2,adjusted_r2,Train_Time_Sec,Best_Params
+Ridge Regression,24441.9686,15443.9869,9.31,0.9221,0.8926,5.699,{'regressor__regressor__alpha': 5.0}
+ElasticNet,24604.7914,15452.1366,9.34,0.9211,0.8911,1.431,"{'regressor__regressor__alpha': 0.001, 'regressor__regressor__l1_ratio': 0.1}"
+Lasso Regression,24758.6472,15470.7445,9.36,0.9201,0.8898,0.48,{'regressor__regressor__alpha': 0.0001}
+OLS (LinearRegression),25003.4446,15578.1148,9.42,0.9185,0.8876,0.056,Default
+Random Forest (Non-linear Benchmark),27149.3434,16410.8692,9.91,0.9039,0.8675,4.343,"{'regressor__regressor__max_depth': None, 'regressor__regressor__n_estimators': 200}"

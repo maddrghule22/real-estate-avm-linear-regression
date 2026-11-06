@@ -1,0 +1,45 @@
+project:
+  name: "house-price-valuation-engine"
+  version: "1.0.0"
+  random_seed: 42
+
+data:
+  dataset_name: "house_prices" # OpenML ID / Kaggle Ames Housing
+  raw_path: "data/raw/ames_housing.csv"
+  processed_train_path: "data/processed/train.parquet"
+  processed_test_path: "data/processed/test.parquet"
+  target_column: "SalePrice"
+  test_size: 0.20
+  val_size: 0.10
+
+features:
+  numerical_features:
+    - "LotArea"
+    - "TotalBsmtSF"
+    - "1stFlrSF"
+    - "GrLivArea"
+    - "FullBath"
+    - "TotRmsAbvGrd"
+    - "GarageCars"
+    - "GarageArea"
+    - "YearBuilt"
+    - "YearRemodAdd"
+  categorical_features:
+    - "Neighborhood"
+    - "HouseStyle"
+    - "OverallQual"
+    - "BldgType"
+    - "Foundation"
+  engineered_features:
+    - "TotalSF"
+    - "HouseAge"
+    - "RemodAge"
+    - "TotalBaths"
+
+metrics:
+  primary: "rmse"
+  secondary:
+    - "mae"
+    - "mape"
+    - "r2"
+    - "adjusted_r2"

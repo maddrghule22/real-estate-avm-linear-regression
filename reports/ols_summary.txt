@@ -1,0 +1,95 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.922
+Model:                            OLS   Adj. R-squared:                  0.917
+Method:                 Least Squares   F-statistic:                     183.1
+Date:                Mon, 02 Nov 2026   Prob (F-statistic):               0.00
+Time:                        14:37:54   Log-Likelihood:                 931.31
+No. Observations:                1166   AIC:                            -1719.
+Df Residuals:                    1094   BIC:                            -1354.
+Df Model:                          71                                         
+Covariance Type:            nonrobust                                         
+==============================================================================================
+                                 coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------
+const                         11.9628      0.052    231.005      0.000      11.861      12.064
+num__OverallQual               0.0647      0.013      4.818      0.000       0.038       0.091
+num__OverallCond               0.0505      0.004     11.244      0.000       0.042       0.059
+num__GrLivArea                 0.0588      0.016      3.730      0.000       0.028       0.090
+num__LotArea                   0.0225      0.004      5.759      0.000       0.015       0.030
+num__TotRmsAbvGrd             -0.0089      0.007     -1.280      0.201      -0.022       0.005
+num__GarageCars                0.0164      0.009      1.892      0.059      -0.001       0.033
+num__GarageArea                0.0171      0.008      2.112      0.035       0.001       0.033
+num__TotalSF                   0.0981      0.022      4.487      0.000       0.055       0.141
+num__TotalBaths                0.0430      0.005      8.472      0.000       0.033       0.053
+num__HouseAge                 -0.0734      0.010     -7.713      0.000      -0.092      -0.055
+num__RemodAge                 -0.0098      0.006     -1.751      0.080      -0.021       0.001
+num__HasGarage                 0.0120      0.005      2.519      0.012       0.003       0.021
+num__HasBasement              -0.0047      0.007     -0.666      0.506      -0.019       0.009
+num__HasFireplace              0.0192      0.004      4.444      0.000       0.011       0.028
+num__Quality_x_TotalSF         0.0119      0.027      0.440      0.660      -0.041       0.065
+cat__Neighborhood_Blueste     -0.0716      0.118     -0.608      0.543      -0.303       0.160
+cat__Neighborhood_BrDale      -0.0608      0.051     -1.190      0.234      -0.161       0.039
+cat__Neighborhood_BrkSide      0.0316      0.042      0.754      0.451      -0.051       0.114
+cat__Neighborhood_ClearCr      0.1034      0.045      2.296      0.022       0.015       0.192
+cat__Neighborhood_CollgCr      0.0057      0.036      0.159      0.873      -0.064       0.076
+cat__Neighborhood_Crawfor      0.1471      0.040      3.667      0.000       0.068       0.226
+cat__Neighborhood_Edwards     -0.0213      0.038     -0.558      0.577      -0.096       0.054
+cat__Neighborhood_Gilbert     -0.0196      0.038     -0.518      0.604      -0.094       0.055
+cat__Neighborhood_IDOTRR      -0.0282      0.045     -0.623      0.533      -0.117       0.060
+cat__Neighborhood_MeadowV     -0.1307      0.051     -2.562      0.011      -0.231      -0.031
+cat__Neighborhood_Mitchel     -0.0125      0.039     -0.317      0.752      -0.090       0.065
+cat__Neighborhood_NAmes        0.0133      0.037      0.358      0.720      -0.060       0.086
+cat__Neighborhood_NPkVill      0.0263      0.055      0.480      0.632      -0.081       0.134
+cat__Neighborhood_NWAmes      -0.0304      0.038     -0.794      0.428      -0.106       0.045
+cat__Neighborhood_NoRidge      0.0564      0.041      1.387      0.166      -0.023       0.136
+cat__Neighborhood_NridgHt      0.0717      0.036      1.989      0.047       0.001       0.143
+cat__Neighborhood_OldTown     -0.0377      0.041     -0.922      0.357      -0.118       0.043
+cat__Neighborhood_SWISU        0.0397      0.047      0.837      0.403      -0.053       0.133
+cat__Neighborhood_Sawyer      -0.0082      0.039     -0.210      0.834      -0.085       0.069
+cat__Neighborhood_SawyerW     -0.0203      0.038     -0.536      0.592      -0.095       0.054
+cat__Neighborhood_Somerst      0.0475      0.036      1.325      0.185      -0.023       0.118
+cat__Neighborhood_StoneBr      0.1508      0.040      3.754      0.000       0.072       0.230
+cat__Neighborhood_Timber       0.0283      0.041      0.694      0.488      -0.052       0.108
+cat__Neighborhood_Veenker      0.1341      0.050      2.695      0.007       0.036       0.232
+cat__BldgType_2fmCon          -0.0193      0.024     -0.815      0.415      -0.066       0.027
+cat__BldgType_Duplex          -0.1113      0.023     -4.922      0.000      -0.156      -0.067
+cat__BldgType_Twnhs           -0.1254      0.028     -4.510      0.000      -0.180      -0.071
+cat__BldgType_TwnhsE          -0.0640      0.018     -3.465      0.001      -0.100      -0.028
+cat__HouseStyle_1.5Unf        -0.0009      0.038     -0.025      0.980      -0.075       0.073
+cat__HouseStyle_1Story         0.0132      0.016      0.818      0.413      -0.018       0.045
+cat__HouseStyle_2.5Fin         0.0219      0.051      0.426      0.671      -0.079       0.123
+cat__HouseStyle_2.5Unf         0.0441      0.038      1.164      0.244      -0.030       0.118
+cat__HouseStyle_2Story         0.0049      0.015      0.327      0.744      -0.024       0.034
+cat__HouseStyle_SFoyer         0.0510      0.028      1.829      0.068      -0.004       0.106
+cat__HouseStyle_SLvl           0.0396      0.021      1.872      0.062      -0.002       0.081
+cat__ExterQual_Fa             -0.0287      0.047     -0.614      0.540      -0.121       0.063
+cat__ExterQual_Gd             -0.0301      0.024     -1.264      0.206      -0.077       0.017
+cat__ExterQual_TA             -0.0172      0.026     -0.652      0.514      -0.069       0.035
+cat__KitchenQual_Fa           -0.1051      0.031     -3.348      0.001      -0.167      -0.044
+cat__KitchenQual_Gd           -0.0804      0.018     -4.344      0.000      -0.117      -0.044
+cat__KitchenQual_TA           -0.0853      0.021     -4.021      0.000      -0.127      -0.044
+cat__Foundation_CBlock         0.0109      0.016      0.687      0.492      -0.020       0.042
+cat__Foundation_PConc          0.0448      0.017      2.582      0.010       0.011       0.079
+cat__Foundation_Slab           0.0015      0.051      0.029      0.977      -0.099       0.102
+cat__Foundation_Stone          0.0672      0.054      1.253      0.210      -0.038       0.172
+cat__Foundation_Wood          -0.0400      0.069     -0.581      0.562      -0.175       0.095
+cat__HeatingQC_Fa             -0.0171      0.021     -0.809      0.419      -0.059       0.024
+cat__HeatingQC_Gd             -0.0196      0.011     -1.821      0.069      -0.041       0.002
+cat__HeatingQC_Po             -0.0911      0.122     -0.750      0.454      -0.330       0.147
+cat__HeatingQC_TA             -0.0168      0.011     -1.588      0.112      -0.038       0.004
+cat__CentralAir_Y              0.0764      0.018      4.346      0.000       0.042       0.111
+cat__SaleCondition_AdjLand     0.1441      0.062      2.337      0.020       0.023       0.265
+cat__SaleCondition_Alloca      0.2059      0.048      4.248      0.000       0.111       0.301
+cat__SaleCondition_Family      0.0299      0.030      0.987      0.324      -0.029       0.089
+cat__SaleCondition_Normal      0.0691      0.014      4.990      0.000       0.042       0.096
+cat__SaleCondition_Partial     0.1110      0.020      5.653      0.000       0.072       0.150
+==============================================================================
+Omnibus:                      265.879   Durbin-Watson:                   1.974
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1722.638
+Skew:                          -0.886   Prob(JB):                         0.00
+Kurtosis:                       8.685   Cond. No.                         137.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
